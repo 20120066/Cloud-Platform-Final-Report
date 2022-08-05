@@ -1,0 +1,56 @@
+title As screen:
+    BackgroundImage: ='yoneyama-1'
+    Fill: =RGBA(0, 0, 0, 0)
+    ImagePosition: =ImagePosition.Fill
+    LoadingSpinnerColor: =RGBA(211, 66, 9, 1)
+
+    Button1 As button:
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(211, 66, 9, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =70
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(211, 66, 9, 1), -20%)
+        OnSelect: =Navigate(BrowseScreen1,Fade)
+        Size: =24
+        Text: ="予約管理"
+        Width: =280
+        X: =180
+        Y: =672
+        ZIndex: =2
+
+    Button1_1 As button:
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(211, 66, 9, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =70
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(211, 66, 9, 1), -20%)
+        OnSelect: = NewForm(EditForm1);Navigate (EditScreen1,None)
+        Size: =24
+        Text: ="予約申請"
+        Width: =280
+        X: =180
+        Y: =381
+        ZIndex: =3
+
+    Label13 As label:
+        Align: =Center
+        BorderColor: =RGBA(131, 24, 75, 1)
+        BorderStyle: =BorderStyle.Dashed
+        Color: =RGBA(246, 88, 16, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(255, 0, 0, 1)
+        Font: =Font.'Lato Black'
+        FontWeight: =Bold
+        Height: =247
+        Size: =54
+        Text: ="お弁当予約アプリ"
+        Width: =588
+        X: =26
+        Y: =62
+        ZIndex: =4
