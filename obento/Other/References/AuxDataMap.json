@@ -1,0 +1,3 @@
+{
+  "AppFromDataMetaDataIdsToEntityNameMappings": "{\"%DataSourceName.AFD%\":\"予約管理\",\"%DataSourceValue.AFD%\":\"[@予約管理]\",\"%SortFieldName.AFD%\":\"\\\"個数\\\"\",\"%SearchFieldName.AFD%\":\"\\\"個数\\\",\\\"値段\\\",\\\"名前\\\"\",\"%StartsWithFieldName.AFD%\":\"個数\",\"%DeleteConfirmFieldName.AFD%\":\"個数\",\"%SortDescending.AFD%\":\"SortDescending1\",\"%BrowseScreen.AFD%\":\"BrowseScreen1\",\"%DetailScreen.AFD%\":\"DetailScreen1\",\"%EditScreen.AFD%\":\"EditScreen1\",\"%BrowseContainer.ID%\":\"BrowseGallery1\",\"%DetailEditContainer.ID%\":\"EditForm1\"}"
+}
