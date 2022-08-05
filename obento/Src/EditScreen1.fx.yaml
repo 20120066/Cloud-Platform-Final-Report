@@ -1,0 +1,666 @@
+"EditScreen1 As screen.'phoneDetailEditLayout_ver3.0'":
+    Fill: =
+    LoadingSpinnerColor: =RGBA(211, 66, 9, 1)
+
+    RectQuickActionBar3 As rectangle:
+        BorderColor: =RGBA(131, 24, 75, 1)
+        Fill: =RGBA(211, 66, 9, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    IconCancel1 As icon.Cancel:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =RGBA(131, 24, 75, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Height: =88
+        Icon: =Icon.Cancel
+        OnSelect: =ResetForm(EditForm1);Back()
+        PaddingBottom: =22
+        PaddingLeft: =22
+        PaddingRight: =22
+        PaddingTop: =22
+        PressedFill: =RGBA(255, 255, 255, 0.3)
+        TabIndex: =0
+        Tooltip: ="項目のキャンセル"
+        Width: =88
+        ZIndex: =2
+
+    IconAccept1 As icon.Check:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =RGBA(131, 24, 75, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Height: =88
+        Icon: =Icon.Check
+        OnSelect: |
+            =SubmitForm(EditForm1);
+            メール.Run()
+        PaddingBottom: =22
+        PaddingLeft: =22
+        PaddingRight: =22
+        PaddingTop: =22
+        PressedFill: =RGBA(255, 255, 255, 0.3)
+        TabIndex: =0
+        Tooltip: ="項目の送信"
+        Width: =88
+        X: =Parent.Width - Self.Width
+        ZIndex: =3
+
+    LblAppName3 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(58, 58, 58, 0)
+        Height: =88
+        Size: =27
+        Text: ="予約管理"
+        Width: =Parent.Width - IconCancel1.Width - IconAccept1.Width
+        Wrap: =false
+        X: =80
+        ZIndex: =4
+
+    EditForm1 As form:
+        BorderColor: =RGBA(131, 24, 75, 1)
+        DataSource: =[@予約管理]
+        Height: =Parent.Height - EditForm1.Y
+        Item: =BrowseGallery1.Selected
+        OnSuccess: =Back()
+        Width: =Parent.Width
+        Y: =RectQuickActionBar3.Height
+        ZIndex: =5
+
+        氏名_DataCard1 As typedDataCard.textualEditCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="氏名"
+            Default: =ThisItem.氏名
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"氏名")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@予約管理], DataSourceInfo.MaxLength, "氏名")
+            Required: =false
+            Update: =DataCardValue2.Text
+            Width: =640
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey8 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue2 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =2
+                Color: =RGBA(0, 0, 0, 1)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                DisplayMode: =Parent.DisplayMode
+                FocusedBorderThickness: =4
+                Height: =70
+                HoverBorderColor: =RGBA(131, 24, 75, 1)
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 211, 205, 1)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =21
+                Tooltip: =Parent.DisplayName
+                Width: =423
+                X: =138
+                Y: =62
+                ZIndex: =2
+
+            ErrorMessage1 As label:
+                AutoHeight: =true
+                Color: =RGBA(168, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue2.Y + DataCardValue2.Height
+                ZIndex: =3
+
+            StarVisible1 As label:
+                Align: =Align.Center
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =DataCardKey8.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey8.Y
+                ZIndex: =4
+
+        学籍番号_DataCard1 As typedDataCard.textualEditCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="学籍番号"
+            Default: =ThisItem.学籍番号
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"学籍番号")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@予約管理], DataSourceInfo.MaxLength, "学籍番号")
+            Required: =false
+            Update: =DataCardValue7.Text
+            Width: =640
+            X: =0
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey9 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue7 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =2
+                Color: =RGBA(0, 0, 0, 1)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                DisplayMode: =Parent.DisplayMode
+                FocusedBorderThickness: =4
+                Format: =TextFormat.Number
+                Height: =70
+                HoverBorderColor: =RGBA(131, 24, 75, 1)
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 211, 205, 1)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =21
+                Tooltip: =Parent.DisplayName
+                Width: =425
+                X: =137
+                Y: =DataCardKey9.Y + DataCardKey9.Height + 5
+                ZIndex: =2
+
+            ErrorMessage3 As label:
+                AutoHeight: =true
+                Color: =RGBA(168, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue7.Y + DataCardValue7.Height
+                ZIndex: =3
+
+            StarVisible6 As label:
+                Align: =Align.Center
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =DataCardKey9.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey9.Y
+                ZIndex: =4
+
+        商品名_DataCard2 As typedDataCard.textualEditCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="商品名"
+            Default: =ThisItem.商品名
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"商品名")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =529
+            MaxLength: =DataSourceInfo([@予約管理], DataSourceInfo.MaxLength, "商品名")
+            Required: =false
+            Update: =Radio1.Selected.Value
+            Width: =640
+            X: =0
+            Y: =2
+            ZIndex: =1
+
+            Radio1 As radio:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Default: ="豚肉スタミナ丼"
+                Height: =436
+                HoverColor: =RGBA(131, 24, 75, 1)
+                Items: =["豚肉スタミナ丼","カレーライス","ネギゴマ唐揚げ丼","ビビンバ丼","うどん","麻婆丼"]
+                OnChange: |
+                    =
+                RadioBorderColor: =RGBA(131, 24, 75, 1)
+                Size: =21
+                Width: =484
+                X: =30
+                Y: =90
+                ZIndex: =5
+
+            DataCardKey7_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =25
+                ZIndex: =12
+
+        商品画像_DataCard1 As typedDataCard.textualEditCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="商品画像"
+            Default: =ThisItem.商品画像
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"商品画像")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =472
+            MaxLength: =DataSourceInfo([@予約管理], DataSourceInfo.MaxLength, "商品画像")
+            Required: =false
+            Update: |
+                =Image14_6
+            Width: =640
+            X: =0
+            Y: =3
+            ZIndex: =1
+
+            ErrorMessage4 As label:
+                AutoHeight: =true
+                Color: =RGBA(168, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =
+                ZIndex: =3
+
+            StarVisible7 As label:
+                Align: =Align.Center
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =DataCardKey10.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey10.Y
+                ZIndex: =4
+
+            Image14_6 As image:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =
+                Height: =341
+                Image: |-
+                    =If(Radio1.Selected.Value = "カレーライス",care,
+                    If(Radio1.Selected.Value ="麻婆丼",mabo,
+                    If(Radio1.Selected.Value ="豚肉スタミナ丼",buta,
+                    If(Radio1.Selected.Value ="ビビンバ丼",bibi,
+                    If(Radio1.Selected.Value ="うどん",udon,negi
+                    )))))
+                OnSelect: =
+                Width: =593
+                X: =30
+                Y: =53
+                ZIndex: =5
+
+            DataCardKey10 As label:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =56
+                Size: =21
+                Text: =
+                Width: =538
+                X: =16
+                Y: =10
+                ZIndex: =6
+
+        盛り付け_DataCard1 As typedDataCard.textualEditCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="盛り付け"
+            Default: =ThisItem.盛り付け
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"盛り付け")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =317
+            MaxLength: =DataSourceInfo([@予約管理], DataSourceInfo.MaxLength, "盛り付け")
+            Required: =false
+            Update: =Radio2.Selected.Value
+            Width: =640
+            X: =0
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey2 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage2 As label:
+                AutoHeight: =true
+                Color: =RGBA(168, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =
+                ZIndex: =3
+
+            StarVisible2 As label:
+                Align: =Align.Center
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =DataCardKey2.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey2.Y
+                ZIndex: =4
+
+            Radio2 As radio:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =164
+                HoverColor: =RGBA(131, 24, 75, 1)
+                Items: =["大盛り","並盛り"]
+                RadioBorderColor: =RGBA(131, 24, 75, 1)
+                Size: =21
+                Width: =438
+                X: =72
+                Y: =90
+                ZIndex: =5
+
+        個数_DataCard2 As typedDataCard.textualEditCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="個数"
+            Default: =ThisItem.個数
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"個数")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =221
+            MaxLength: =DataSourceInfo([@予約管理], DataSourceInfo.MaxLength, "個数")
+            Required: =false
+            Update: =Dropdown1.Selected.Value
+            Width: =640
+            X: =0
+            Y: =5
+            ZIndex: =1
+
+            DataCardKey7 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            StarVisible3 As label:
+                Align: =Align.Center
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =DataCardKey7.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey7.Y
+                ZIndex: =4
+
+            Dropdown1 As dropdown:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                ChevronBackground: =RGBA(211, 66, 9, 1)
+                ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                ChevronHoverBackground: =ColorFade(RGBA(211, 66, 9, 1), -20%)
+                ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =70
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 211, 205, 1)
+                Items: =[1,2,3,4,5]
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(131, 24, 75, 1)
+                SelectionFill: =RGBA(211, 66, 9, 1)
+                Size: =21
+                Width: =115
+                X: =262
+                Y: =84
+                ZIndex: =5
+
+            Label3_1 As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =70
+                Size: =21
+                Text: ="個"
+                Width: =145
+                X: =354
+                Y: =84
+                ZIndex: =6
+
+        値段_DataCard2 As typedDataCard.textualEditCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="値段"
+            Default: =ThisItem.値段
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"値段")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =170
+            MaxLength: =DataSourceInfo([@予約管理], DataSourceInfo.MaxLength, "値段")
+            Required: =false
+            Update: |
+                =Label1
+            Width: =640
+            X: =0
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey11 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            StarVisible4 As label:
+                Align: =Align.Center
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =DataCardKey11.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey11.Y
+                ZIndex: =4
+
+            Label1 As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =68
+                Size: =21
+                Text: |-
+                    =
+                    If(Radio2.Selected.Value="大盛り",500*Dropdown1.Selected.Value,400*Dropdown1.Selected.Value)
+                Width: =298
+                X: =312
+                Y: =63
+                ZIndex: =5
+
+            Label3 As label:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =70
+                Size: =21
+                Text: ="円"
+                Width: =145
+                X: =490
+                Y: =62
+                ZIndex: =6
+
+        日付_DataCard2 As typedDataCard.textualEditCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="日付"
+            Default: =ThisItem.日付
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"日付")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =191
+            MaxLength: =DataSourceInfo([@予約管理], DataSourceInfo.MaxLength, "日付")
+            Required: =false
+            Update: =DatePicker1
+            Width: =640
+            X: =0
+            Y: =7
+            ZIndex: =1
+
+            DataCardKey12 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            StarVisible5 As label:
+                Align: =Align.Center
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =DataCardKey12.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey12.Y
+                ZIndex: =4
+
+            DatePicker1 As datepicker:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                CalendarHeaderFill: =RGBA(211, 66, 9, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =70
+                HoverDateFill: =RGBA(255, 211, 205, 1)
+                IconBackground: =RGBA(211, 66, 9, 1)
+                SelectedDateFill: =RGBA(211, 66, 9, 1)
+                Size: =24
+                Width: =421
+                X: =132
+                Y: =81
+                ZIndex: =5
