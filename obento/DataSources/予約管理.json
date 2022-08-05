@@ -1,0 +1,27 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_excel",
+    "CdpRevision": {
+      "BaseUrl": "/",
+      "LastChangedTimeString": "2022-04-14T17:22:02.4360000Z",
+      "RevisionNumber": 1
+    },
+    "ConnectedDataSourceInfoNameMapping": {
+      "__PowerAppsId__": "Row id",
+      "学籍番号": "学籍番号",
+      "個数": "個数",
+      "氏名": "氏名",
+      "商品画像": "商品画像",
+      "商品名": "商品名",
+      "盛り付け": "盛り付け",
+      "値段": "値段",
+      "日付": "日付"
+    },
+    "DatasetName": "b!UZ4Fpnejt0mdmpDsKWlHOCeJi4y-eRtIukvz6-nVBrfBhXtPoH2DS7AgJnwZ8tVj.01T5EX7QZVXN5ZV5GVRBCJ4XWPIDOCWLPT",
+    "EncodeDataset": true,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "予約管理",
+    "Type": "ConnectedDataSourceInfo"
+  }
+]

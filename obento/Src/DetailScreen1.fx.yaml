@@ -1,0 +1,437 @@
+"DetailScreen1 As screen.'phoneDetailViewLayout_ver3.0'":
+    Fill: =RGBA(255,255,255,1)
+    LoadingSpinnerColor: =RGBA(211, 66, 9, 1)
+
+    RectQuickActionBar2 As rectangle:
+        BorderColor: =RGBA(131, 24, 75, 1)
+        Fill: =RGBA(211, 66, 9, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    IconBackarrow1 As icon.ChevronLeft:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =RGBA(131, 24, 75, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Height: =88
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Navigate(BrowseScreen1, ScreenTransition.None)
+        PaddingBottom: =24
+        PaddingLeft: =24
+        PaddingRight: =24
+        PaddingTop: =24
+        PressedFill: =RGBA(255, 255, 255, 0.3)
+        TabIndex: =0
+        Tooltip: ="一覧に戻る"
+        Width: =88
+        ZIndex: =2
+
+    IconEdit1 As icon.Edit:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =RGBA(131, 24, 75, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayMode: =If(DataSourceInfo([@予約管理], DataSourceInfo.EditPermission), DisplayMode.Edit, DisplayMode.Disabled)
+        Height: =88
+        Icon: =Icon.Edit
+        OnSelect: =EditForm(EditForm1);Navigate(EditScreen1, ScreenTransition.None)
+        PaddingBottom: =24
+        PaddingLeft: =24
+        PaddingRight: =24
+        PaddingTop: =24
+        PressedFill: =RGBA(255, 255, 255, 0.3)
+        TabIndex: =0
+        Tooltip: ="この項目の編集"
+        Width: =88
+        X: =Parent.Width - Self.Width
+        ZIndex: =3
+
+    IconDelete1 As icon.Trash:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =RGBA(131, 24, 75, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayMode: =If(!IsBlank(BrowseGallery1.Selected) && DataSourceInfo([@予約管理], DataSourceInfo.DeletePermission), DisplayMode.Edit, DisplayMode.Disabled)
+        Height: =88
+        Icon: =Icon.Trash
+        OnSelect: =Remove([@予約管理], BrowseGallery1.Selected); If (IsEmpty(Errors([@予約管理], BrowseGallery1.Selected)), Back())
+        PaddingBottom: =24
+        PaddingLeft: =24
+        PaddingRight: =24
+        PaddingTop: =24
+        PressedFill: =RGBA(255, 255, 255, 0.3)
+        TabIndex: =0
+        Tooltip: ="この項目の削除"
+        Width: =88
+        X: =Parent.Width - IconEdit1.Width - Self.Width
+        ZIndex: =4
+
+    LblAppName2 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Size: =27
+        Text: ="予約管理"
+        Width: =Parent.Width - Self.X - IconDelete1.Width - IconEdit1.Width
+        Wrap: =false
+        X: =80
+        ZIndex: =5
+
+    DetailForm1 As formViewer:
+        BorderColor: =RGBA(131, 24, 75, 1)
+        DataSource: =[@予約管理]
+        Height: =Parent.Height - DetailForm1.Y
+        Item: =BrowseGallery1.Selected
+        Width: =Parent.Width
+        Y: =RectQuickActionBar2.Y + RectQuickActionBar2.Height
+        ZIndex: =6
+
+        名前_DataCard1 As typedDataCard.textualViewCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="名前"
+            Default: =ThisItem.氏名
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"氏名")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =126
+            Required: =false
+            Width: =640
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey6 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue6 As label:
+                AutoHeight: =true
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisplayMode: =Parent.DisplayMode
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey6.Y + DataCardKey6.Height + 5
+                ZIndex: =2
+
+        学籍番号_DataCard2 As typedDataCard.textualViewCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="学籍番号"
+            Default: =ThisItem.学籍番号
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"学籍番号")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Width: =640
+            X: =0
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey13 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue9 As label:
+                AutoHeight: =true
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisplayMode: =Parent.DisplayMode
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey13.Y + DataCardKey13.Height + 5
+                ZIndex: =2
+
+        商品名_DataCard1 As typedDataCard.textualViewCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="商品名"
+            Default: =ThisItem.商品名
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"商品名")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =119
+            Required: =false
+            Width: =640
+            X: =0
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey3 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue3 As label:
+                AutoHeight: =true
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisplayMode: =Parent.DisplayMode
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey3.Y + DataCardKey3.Height + 5
+                ZIndex: =2
+
+        商品画像_DataCard2 As typedDataCard.textualViewCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="商品画像"
+            Default: =ThisItem.商品画像
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"商品画像")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =333
+            Required: =false
+            Width: =640
+            X: =0
+            Y: =3
+            ZIndex: =1
+
+            Image2 As image:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =320
+                Image: =ThisItem.商品画像
+                Width: =437
+                X: =55
+                ZIndex: =3
+
+        盛り付け_DataCard2 As typedDataCard.textualViewCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="盛り付け"
+            Default: =ThisItem.盛り付け
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"盛り付け")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =176
+            Required: =false
+            Width: =640
+            X: =0
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey14 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue10 As label:
+                AutoHeight: =true
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisplayMode: =Parent.DisplayMode
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey14.Y + DataCardKey14.Height + 5
+                ZIndex: =2
+
+            Label5 As label:
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =70
+                Size: =21
+                Text: =
+                Width: =560
+                X: =40
+                Y: =77
+                ZIndex: =3
+
+        個数_DataCard1 As typedDataCard.textualViewCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="個数"
+            Default: =ThisItem.個数
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"個数")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =172
+            Required: =false
+            Width: =640
+            X: =0
+            Y: =5
+            ZIndex: =1
+
+            DataCardKey1 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue1 As label:
+                AutoHeight: =true
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisplayMode: =Parent.DisplayMode
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey1.Y + DataCardKey1.Height + 5
+                ZIndex: =2
+
+        値段_DataCard1 As typedDataCard.textualViewCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="値段"
+            Default: =ThisItem.値段
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"値段")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =129
+            Required: =false
+            Width: =640
+            X: =0
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey4 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue4 As label:
+                AutoHeight: =true
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisplayMode: =Parent.DisplayMode
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey4.Y + DataCardKey4.Height + 5
+                ZIndex: =2
+
+        日付_DataCard1 As typedDataCard.textualViewCard:
+            BorderColor: =RGBA(131, 24, 75, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="日付"
+            Default: =ThisItem.日付
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@予約管理],DataSourceInfo.DisplayName,"日付")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =151
+            Required: =false
+            Width: =640
+            X: =0
+            Y: =7
+            ZIndex: =1
+
+            DataCardKey5 As label:
+                AutoHeight: =true
+                Color: =RGBA(131, 24, 75, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue5 As label:
+                AutoHeight: =true
+                BorderColor: =RGBA(131, 24, 75, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisplayMode: =Parent.DisplayMode
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey5.Y + DataCardKey5.Height + 5
+                ZIndex: =2
+
